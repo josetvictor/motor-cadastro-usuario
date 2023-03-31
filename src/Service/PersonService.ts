@@ -14,6 +14,27 @@ export class PersonService {
     this.personRepository = personRepository;  
   }
 
+  async FindAllPerson() {
+    try {
+      return await this.personRepository.findAll();
+    } catch (error) {
+      throw new Error(error.menssage);
+    }
+  }
+
+  async FindPersonByDocument(txDocument: string){
+    try {
+      const findedPerson = await this.personRepository.findByDocument(txDocument);
+
+      if(!findedPerson)
+        throw new Error("Pessoa não encontrada no sistema.");
+
+      return findedPerson;
+    } catch (error) {
+      throw new Error(error.menssage);
+    }
+  }
+
   async CreatePerson(person: Person) {
     try {
       const existPerson = await this.personRepository.findByDocument(person.txDocument)
