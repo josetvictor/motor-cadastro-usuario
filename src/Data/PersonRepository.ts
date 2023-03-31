@@ -1,4 +1,4 @@
-import { Person } from "../Domain/entities/Person";
+import { Person } from "../Domain/entities/Person/Person";
 import { IPersonRepository } from "../Domain/interfaces/IPersonRepository";
 
 export class PersonRepositoy implements IPersonRepository {

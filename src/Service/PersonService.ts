@@ -1,7 +1,7 @@
 
 import { inject, injectable } from "tsyringe";
 
-import { Person } from "../Domain/entities/Person";
+import { Person } from "../Domain/entities/Person/Person";
 
 import { IPersonRepository } from "../Domain/interfaces/IPersonRepository";
 

@@ -1,4 +1,4 @@
-import { Person } from "../entities/Person";
+import { Person } from "../entities/Person/Person";
 
 export interface IPersonRepository {
   findAll(): Promise<Person>;
