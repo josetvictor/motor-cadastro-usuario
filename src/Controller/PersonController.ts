@@ -5,6 +5,7 @@ import { PersonService } from "../Service/PersonService";
 @injectable()
 export class PersonController {
   private personService: PersonService;
+  
   constructor(@inject('PersonService') personService: PersonService){
     this.personService = personService;
   }
