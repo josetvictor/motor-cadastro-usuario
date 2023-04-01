@@ -27,7 +27,7 @@ export class PersonHospitalService {
     }
   }
 
-  async savePersonContact(personHospital: PersonHospital): Promise<void> {
+  async savePersonHospital(personHospital: PersonHospital): Promise<void> {
     try {
       return await this.repository.save(personHospital);
     } catch (error) {
