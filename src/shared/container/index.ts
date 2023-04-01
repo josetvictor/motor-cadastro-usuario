@@ -9,12 +9,18 @@ import { PersonService } from "../../Service/PersonService";
 import { IHospitalRepository } from "../../Domain/interfaces/IHospitalRepository";
 import { HospitalRepository } from "../../Data/HospitalRepository";
 import { HospitalService } from "../../Service/HospitalService";
+
 import { IPersonContactRepository } from "../../Domain/interfaces/IPersonContactRepository";
 import { PersonContactRepository } from "../../Data/PersonContactRepository";
 import { PersonContactService } from "../../Service/PersonContactService";
+
 import { IPersonAddressRepository } from "../../Domain/interfaces/IPersonAddressRepository";
 import { PersonAddressRepository } from "../../Data/PersonAddressRepository";
 import { PersonAddressService } from "../../Service/PersonAddressService";
+
+import { IPersonHospitalRepository } from "../../Domain/interfaces/IPersonHospitalRepository";
+import { PersonHospitalRepository } from "../../Data/PersonHospitalRepository";
+import { PersonHospitalService } from "../../Service/PersonHospitalService";
 
 container.registerSingleton<IPersonRepository>('PersonRepository', PersonRepositoy);
 container.registerSingleton<PersonService>('PersonService', PersonService);
@@ -27,3 +33,6 @@ container.registerSingleton<PersonContactService>("PersonContactService", Person
 
 container.registerSingleton<IPersonAddressRepository>("PersonAddressRepository", PersonAddressRepository);
 container.registerSingleton<PersonAddressService>("PersonAddressService", PersonAddressService);
+
+container.registerSingleton<IPersonHospitalRepository>("PersonHospitalRepository", PersonHospitalRepository);
+container.registerSingleton<PersonHospitalService>("PersonHospitalService", PersonHospitalService);
