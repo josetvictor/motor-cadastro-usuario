@@ -7,24 +7,24 @@ import { IPersonRepository } from "../Domain/interfaces/IPersonRepository";
 
 @injectable()
 export class PersonService {
-  private personRepository: IPersonRepository;
+  private repository: IPersonRepository;
 
   constructor(@inject('PersonRepository') personRepository: IPersonRepository) 
   {
-    this.personRepository = personRepository;  
+    this.repository = personRepository;
   }
 
-  async FindAllPerson() {
+  async findAllPerson() {
     try {
-      return await this.personRepository.findAll();
+      return await this.repository.findAll();
     } catch (error) {
       throw new Error(error.menssage);
     }
   }
 
-  async FindPersonByDocument(txDocument: string){
+  async findPersonByDocument(txDocument: string){
     try {
-      const findedPerson = await this.personRepository.findByDocument(txDocument);
+      const findedPerson = await this.repository.findByDocument(txDocument);
 
       if(!findedPerson)
         throw new Error("Pessoa não encontrada no sistema.");
@@ -35,15 +35,15 @@ export class PersonService {
     }
   }
 
-  async CreatePerson(person: Person) {
+  async savePerson(person: Person) {
     try {
-      const existPerson = await this.personRepository.findByDocument(person.txDocument)
+      const existPerson = await this.repository.findByDocument(person.txDocument)
       
       if(existPerson){
         throw new Error("A pessoa informada já está cadastrada no sistema.");
       }
 
-      await this.personRepository.save(person);
+      await this.repository.save(person);
 
     } catch (error) {
       throw new Error(error.menssage)

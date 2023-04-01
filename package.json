@@ -1,7 +1,7 @@
 {
   "name": "motor-cadastro-usuario",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.ts",
   "repository": "git@github.com:josetvictor/motor-cadastro-usuario.git",
   "license": "MIT",
   "scripts": {

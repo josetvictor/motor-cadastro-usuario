@@ -10,7 +10,7 @@ export class PersonAddress {
   public vaNumber: number;
   public txReference: string;
   public person: Person;
-  public hospital: Hospital;
+  public hospital?: Hospital;
 
   constructor(props: Omit<PersonAddress, 'id'>, id?: string){
     this.txPlace = props.txPlace;

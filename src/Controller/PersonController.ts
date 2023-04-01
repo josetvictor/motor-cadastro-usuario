@@ -10,9 +10,9 @@ export class PersonController {
     this.personService = personService;
   }
 
-  async FindAllPerson(request: Request, response: Response): Promise<Response> {
+  async findAllPerson(request: Request, response: Response): Promise<Response> {
     try {
-      const person = await this.personService.FindAllPerson();
+      const person = await this.personService.findAllPerson();
 
       return response.status(200).send(person)
     } catch (error) {
@@ -22,11 +22,11 @@ export class PersonController {
     }
   }
 
-  async FindByDocumentPerson(request: Request, response: Response): Promise<Response> {
+  async findByDocumentPerson(request: Request, response: Response): Promise<Response> {
     const {txDocument} = request.body;
 
     try {
-      const person = await this.personService.FindPersonByDocument(txDocument);
+      const person = await this.personService.findPersonByDocument(txDocument);
 
       return response.status(200).send(person)
     } catch (error) {
@@ -36,11 +36,11 @@ export class PersonController {
     }
   }
 
-  async CreatePerson(request: Request, response: Response): Promise<Response> {
+  async savePerson(request: Request, response: Response): Promise<Response> {
     const {txName, txSurname, txDocument, isConsent, dtBirth } = request.body;
 
     try {
-      await this.personService.CreatePerson({
+      await this.personService.savePerson({
         txName,
         txSurname,
         txDocument,
