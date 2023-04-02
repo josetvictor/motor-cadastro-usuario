@@ -13,12 +13,17 @@ const InjectHospitalController = container.resolve(HospitalController);
 const InjectPersonAddressController = container.resolve(PersonAddressController);
 const InjectPersonContactController = container.resolve(PersonContactController);
 const InjectPersonHospitalController = container.resolve(PersonHospitalController);
+
 // TODO : realizar organização das rotas a serem usadas
 router.get('/person', (req, res) =>{ return InjectPersonController.findAllPerson(req, res) });
 router.get('/person/:document', (req, res) =>{ return InjectPersonController.findByDocumentPerson(req, res) });
 router.post('/person', (req, res) =>{ return InjectPersonController.savePerson(req, res) });
 
 router.get('/hospital', (req, res) =>{ return InjectHospitalController.findAllHospital(req, res) });
+router.get('/hospital/:txName', (req, res) =>{ return InjectHospitalController.findHospitalByName(req, res) });
 router.post('/hospital', (req, res) =>{ return InjectHospitalController.saveHospital(req, res) });
+
+router.get('/person/address/:idPerson', (req, res) => { return InjectPersonAddressController.findAllAddressByPerson(req, res)});
+router.get('person/address/:idHospital', (req, res) => { return InjectPersonAddressController.findAllAddressByHospital(req, res)});
 
 export { router };

@@ -35,7 +35,7 @@ export class HospitalService {
       const existHospital = await this.repository.findByName(hospital.txName);
 
       if(existHospital) {
-        throw new Error("");
+        throw new Error("Hospital com esse nome já existe!");
       }
 
       await this.repository.save(hospital);

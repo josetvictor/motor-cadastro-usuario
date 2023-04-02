@@ -1,6 +1,7 @@
 import { inject, injectable } from "tsyringe";
 
 import { IPersonContactRepository } from "../Domain/interfaces/IPersonContactRepository";
+
 import { PersonContact } from "../Domain/entities/Person/PersonContact";
 
 @injectable()

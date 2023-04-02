@@ -1,6 +1,8 @@
 import { inject, injectable } from "tsyringe";
+
 import { PersonAddressRepository } from "../Data/PersonAddressRepository";
 import { IPersonAddressRepository } from "../Domain/interfaces/IPersonAddressRepository";
+
 import { PersonAddress } from "../Domain/entities/Person/PersonAddress";
 
 @injectable()
