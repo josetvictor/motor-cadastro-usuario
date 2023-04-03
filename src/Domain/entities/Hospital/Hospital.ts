@@ -1,7 +1,7 @@
 import { uuid } from "uuidv4";
 
 export class Hospital {
-  public readonly Id?: string;
+  public readonly id?: string;
 
   public txName: string;
 
@@ -9,7 +9,7 @@ export class Hospital {
     this.txName = props.txName;
 
     if(!id)
-      this.Id = uuid();
+      this.id = uuid();
 
   }
 }

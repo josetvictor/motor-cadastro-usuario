@@ -37,17 +37,16 @@ export class PersonAddressController {
   async saveAddress(request: Request, response: Response): Promise<Response> {
     const {txPlace, vaNumber, txReference, idPerson, idHospital} = request.body
     try {
-      // TODO validar se a pessoa existe antes de criar um endereço
-      await this.service.savePersonAddress(
+      const addressCreated = await this.service.savePersonAddress(
         {
           txPlace,
           vaNumber,
           txReference,
-          person: idPerson,
-          hospital: idHospital
+          idPerson: idPerson,
+          idHospital: idHospital
         });
       
-      return response.status(200).send()
+      return response.status(200).send(addressCreated)
     } catch (error) {
       return response.status(400).json({
         message: error.message || 'Unexpected error.'

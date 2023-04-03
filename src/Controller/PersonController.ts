@@ -40,7 +40,7 @@ export class PersonController {
     const {txName, txSurname, txDocument, isConsent, dtBirth } = request.body;
 
     try {
-      await this.personService.savePerson({
+      const personCreated = await this.personService.savePerson({
         txName,
         txSurname,
         txDocument,
@@ -48,7 +48,7 @@ export class PersonController {
         dtBirth,
       });
 
-      return response.status(201).send()
+      return response.status(201).send(personCreated)
     } catch (error) {
       return response.status(400).json({
         message: error.message || 'Unexpected error.'

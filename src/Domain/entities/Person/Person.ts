@@ -1,7 +1,7 @@
 import { uuid } from "uuidv4";
 
 export class Person {
-  public readonly Id?: string;
+  public readonly id?: string;
 
   public txName: string;
   public txSurname: string;
@@ -17,7 +17,7 @@ export class Person {
     this.dtBirth = props.dtBirth;
 
     if(!id)
-      this.Id = uuid();
+      this.id = uuid();
 
   }
 }

@@ -4,17 +4,28 @@ import { inject, injectable } from "tsyringe";
 import { Person } from "../Domain/entities/Person/Person";
 
 import { IPersonRepository } from "../Domain/interfaces/IPersonRepository";
+import { HospitalService } from "./HospitalService";
+import { PersonHospitalService } from "./PersonHospitalService";
+import { PersonRepositoy } from "../Data/PersonRepository";
 
 @injectable()
 export class PersonService {
   private repository: IPersonRepository;
+  private hospitalService: HospitalService;
+  private personHospitalService: PersonHospitalService;
 
-  constructor(@inject('PersonRepository') personRepository: IPersonRepository) 
+  constructor(
+    @inject('PersonRepository') personRepository: PersonRepositoy,
+    @inject('HospitalService') serviceHospital: HospitalService,
+    @inject('PersonHospitalService') serviceHospitalPerson: PersonHospitalService
+  ) 
   {
     this.repository = personRepository;
+    this.hospitalService = serviceHospital;
+    this.personHospitalService = serviceHospitalPerson;
   }
 
-  async findAllPerson() {
+  async findAllPerson(): Promise<Person[]> {
     try {
       return await this.repository.findAll();
     } catch (error) {
@@ -22,7 +33,7 @@ export class PersonService {
     }
   }
 
-  async findPersonByDocument(txDocument: string){
+  async findPersonByDocument(txDocument: string): Promise<Person> {
     try {
       const findedPerson = await this.repository.findByDocument(txDocument);
 
@@ -35,7 +46,7 @@ export class PersonService {
     }
   }
 
-  async savePerson(person: Person) {
+  async savePerson(person: Person): Promise<Person> {
     try {
       const existPerson = await this.repository.findByDocument(person.txDocument)
       
@@ -43,7 +54,17 @@ export class PersonService {
         throw new Error("A pessoa informada já está cadastrada no sistema.");
       }
 
-      await this.repository.save(person);
+      const personCreated = await this.repository.save(new Person(person));
+
+      if(personCreated.isConsent){
+        const allHospitals = await this.hospitalService.findAllHospital();
+        
+        allHospitals.forEach(async hos => {
+          await this.personHospitalService.save(personCreated.id, hos.id);
+        });
+      }
+
+      return personCreated;
 
     } catch (error) {
       throw new Error(error.menssage)

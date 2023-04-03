@@ -1,20 +1,17 @@
 import { uuid } from "uuidv4";
 
-import { Hospital } from "../Hospital/Hospital";
-import { Person } from "../Person/Person";
-
 export class PersonHospital {
-  public readonly Id?: string;
+  public readonly id?: string;
 
-  public person: Person[];
-  public hospital: Hospital;
+  public idPerson: string;
+  public idHospital: string;
 
   constructor(props: Omit<PersonHospital, 'id'>, id?: string){
-    this.person = props.person;
-    this.hospital = props.hospital;
+    this.idPerson = props.idPerson;
+    this.idHospital = props.idHospital;
 
     if(!id)
-      this.Id = uuid();
+      this.id = uuid();
 
   }
 }

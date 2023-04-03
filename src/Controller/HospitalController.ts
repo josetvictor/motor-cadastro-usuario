@@ -1,6 +1,7 @@
 import { inject, injectable } from "tsyringe";
 import { HospitalService } from "../Service/HospitalService";
 import { Request, Response } from "express";
+import { Hospital } from "../Domain/entities/Hospital/Hospital";
 
 @injectable()
 export class HospitalController {
@@ -36,9 +37,9 @@ export class HospitalController {
   async saveHospital(request: Request, response: Response): Promise<Response> {
     const {txName} = request.body
     try {
-      await this.service.saveHospital({txName});
+      const hospitalCreated = await this.service.saveHospital({txName});
       
-      return response.status(200).send()
+      return response.status(200).send(hospitalCreated)
     } catch (error) {
       return response.status(400).json({
         message: error.message || 'Unexpected error.'

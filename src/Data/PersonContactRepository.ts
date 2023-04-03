@@ -3,13 +3,13 @@ import { IPersonContactRepository } from "../Domain/interfaces/IPersonContactRep
 
 
 export class PersonContactRepository implements IPersonContactRepository {
-  findAllByPerson(idPerson: string): Promise<PersonContact> {
+  findAllByPerson(idPerson: string): Promise<PersonContact[]> {
     throw new Error("Method not implemented.");
   }
-  findAllByHospital(idHospital: string): Promise<PersonContact> {
+  findAllByHospital(idHospital: string): Promise<PersonContact[]> {
     throw new Error("Method not implemented.");
   }
-  save(contact: PersonContact): Promise<void> {
+  save(contact: PersonContact): Promise<PersonContact> {
     throw new Error("Method not implemented.");
   }
 }

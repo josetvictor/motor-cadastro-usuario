@@ -34,15 +34,19 @@ export class PersonHospitalController {
     }
   }
 
-  async savePersonHospital(request: Request, response: Response): Promise<Response> {
-    const {idPerson, idHospital} = request.body
+  async savePersonWithHospitalExist(request: Request, response: Response): Promise<Response> {
+    const {txName, txSurname, txDocument, isConsent, dtBirth, idHospital } = request.body;
+
     try {
-      // TODO validar se a pessoa existe antes de criar um contato
-      await this.service.savePersonHospital(
+      await this.service.savePersonWithHospitalExist(
         {
-          person: idPerson,
-          hospital: idHospital
-        });
+          txName,
+          txSurname,
+          txDocument,
+          isConsent,
+          dtBirth,
+        },
+        idHospital);
       
       return response.status(200).send()
     } catch (error) {

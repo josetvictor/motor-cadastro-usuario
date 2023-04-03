@@ -1,25 +1,22 @@
 import { uuid } from "uuidv4";
 
-import { Person } from "./Person";
-import { Hospital } from "../Hospital/Hospital";
-
 export class PersonAddress {
-  public Id?: string;
+  public id?: string;
 
   public txPlace: string;
   public vaNumber: number;
   public txReference: string;
-  public person: Person;
-  public hospital?: Hospital;
+  public idPerson: string;
+  public idHospital?: string;
 
   constructor(props: Omit<PersonAddress, 'id'>, id?: string){
     this.txPlace = props.txPlace;
     this.vaNumber = props.vaNumber;
     this.txReference = props.txReference;
-    this.person = props.person;
-    this.hospital = props.hospital;
+    this.idPerson = props.idPerson;
+    this.idHospital = props.idHospital;
 
     if(!id)
-      this.Id = uuid();
+      this.id = uuid();
   }
 }

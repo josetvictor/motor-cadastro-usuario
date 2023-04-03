@@ -22,17 +22,18 @@ import { IPersonHospitalRepository } from "../../Domain/interfaces/IPersonHospit
 import { PersonHospitalRepository } from "../../Data/PersonHospitalRepository";
 import { PersonHospitalService } from "../../Service/PersonHospitalService";
 
-container.registerSingleton<IPersonRepository>('PersonRepository', PersonRepositoy);
-container.registerSingleton<PersonService>('PersonService', PersonService);
-
-container.registerSingleton<IHospitalRepository>("HospitalRepository", HospitalRepository);
-container.registerSingleton<HospitalService>("HospitalService", HospitalService);
+container.registerSingleton<IPersonAddressRepository>("PersonAddressRepository", PersonAddressRepository);
+container.registerSingleton<PersonAddressService>("PersonAddressService", PersonAddressService);
 
 container.registerSingleton<IPersonContactRepository>("PersonContactRepository", PersonContactRepository);
 container.registerSingleton<PersonContactService>("PersonContactService", PersonContactService);
 
-container.registerSingleton<IPersonAddressRepository>("PersonAddressRepository", PersonAddressRepository);
-container.registerSingleton<PersonAddressService>("PersonAddressService", PersonAddressService);
+container.registerSingleton<IHospitalRepository>("HospitalRepository", HospitalRepository);
+container.registerSingleton<HospitalService>("HospitalService", HospitalService);
 
 container.registerSingleton<IPersonHospitalRepository>("PersonHospitalRepository", PersonHospitalRepository);
 container.registerSingleton<PersonHospitalService>("PersonHospitalService", PersonHospitalService);
+
+container.registerSingleton<IPersonRepository>('PersonRepository', PersonRepositoy);
+container.registerSingleton<PersonService>('PersonService', PersonService);
+
