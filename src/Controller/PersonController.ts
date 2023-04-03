@@ -47,7 +47,7 @@ export class PersonController {
   }
 
   async savePerson(request: Request, response: Response): Promise<Response> {
-    const {txName, txSurname, txDocument, isConsent, dtBirth } = request.body;
+    const {txName, txSurname, txDocument, isConsent } = request.body;
 
     try {
       await this.personService.savePerson({

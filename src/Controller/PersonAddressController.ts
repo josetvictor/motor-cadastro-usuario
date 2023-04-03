@@ -58,7 +58,7 @@ export class PersonAddressController {
       
       return response.status(201).json({
         status: "Created",
-        message: "Hospital Created."
+        message: "Address Created."
       })
     } catch (error) {
       return response.status(400).json({

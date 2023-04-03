@@ -1,7 +1,6 @@
 import { inject, injectable } from "tsyringe";
 import { HospitalService } from "../Service/HospitalService";
 import { Request, Response } from "express";
-import { Hospital } from "../Domain/entities/Hospital/Hospital";
 
 @injectable()
 export class HospitalController {
@@ -16,7 +15,7 @@ export class HospitalController {
       const hospital = await this.service.findAllHospital();
       return response.status(200).json({
         status: "OK",
-        message: "Hospital found.",
+        message: "All hospital found.",
         data: hospital
       })
     } catch (error) {
@@ -30,7 +29,6 @@ export class HospitalController {
   async findHospitalByName(request: Request, response: Response): Promise<Response> {
     const { txName } = request.body;
     try {
-      console.log(`txName: ${txName}`)
       const hospital = await this.service.findHospitalByName(txName);
       return response.status(200).json({
         status: "OK",

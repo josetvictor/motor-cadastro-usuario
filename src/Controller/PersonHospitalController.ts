@@ -57,7 +57,10 @@ export class PersonHospitalController {
         },
         idHospital);
       
-      return response.status(200).send()
+      return response.status(201).json({
+        status: "Created",
+        message: "Created relationship."
+      })
     } catch (error) {
       return response.status(400).json({
         status: "Bad Request",
