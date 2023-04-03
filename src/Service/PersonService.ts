@@ -56,13 +56,6 @@ export class PersonService {
 
       await this.repository.save(new Person(person));
 
-      if(person.isConsent){
-        const allHospitals = await this.hospitalService.findAllHospital();
-        
-        allHospitals.forEach(async (hos: Person) => {
-          await this.personHospitalService.save(person.id, hos.id);
-        });
-      }
     } catch (error) {
       throw new Error(error)
     }

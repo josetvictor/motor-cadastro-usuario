@@ -1,7 +1,7 @@
 import { PersonHospital } from "../entities/PersonHospital/PersonHospital";
 
 export interface IPersonHospitalRepository {
-  findAllByPerson(idPerson: string): Promise<PersonHospital[]>;
-  findAllByHospital(idHospital: string): Promise<PersonHospital[]>;
-  save(personHospital: PersonHospital): Promise<PersonHospital>;
+  findAllByPerson(idPerson: string): Promise<object[]>;
+  findAllByHospital(idHospital: string): Promise<object[]>;
+  save(personHospital: PersonHospital): Promise<void>;
 }

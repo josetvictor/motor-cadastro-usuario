@@ -13,10 +13,15 @@ export class PersonHospitalController {
   async findAllByPerson(request: Request, response: Response): Promise<Response> {
     const { idPerson } = request.body;
     try {
-      const address = await this.service.findAllByPerson(idPerson);
-      return response.status(200).send(address)
+      const hospital = await this.service.findAllByPerson(idPerson);
+      return response.status(200).json({
+        status: "OK",
+        message: "Persons found.",
+        data: hospital
+      })
     } catch (error) {
       return response.status(400).json({
+        status: "Bad Request",
         message: error.message || 'Unexpected error.'
       })
     }
@@ -26,16 +31,21 @@ export class PersonHospitalController {
     const { idHospital } = request.body;
     try {
       const hospital = await this.service.findAllByHospital(idHospital);
-      return response.status(200).send(hospital)
+      return response.status(200).json({
+        status: "OK",
+        message: "Persons found.",
+        data: hospital
+      })
     } catch (error) {
       return response.status(400).json({
+        status: "Bad Request",
         message: error.message || 'Unexpected error.'
       })
     }
   }
 
   async savePersonWithHospitalExist(request: Request, response: Response): Promise<Response> {
-    const {txName, txSurname, txDocument, isConsent, dtBirth, idHospital } = request.body;
+    const {person: {txName, txSurname, txDocument, isConsent}, idHospital } = request.body;
 
     try {
       await this.service.savePersonWithHospitalExist(
@@ -43,14 +53,14 @@ export class PersonHospitalController {
           txName,
           txSurname,
           txDocument,
-          isConsent,
-          dtBirth,
+          isConsent
         },
         idHospital);
       
       return response.status(200).send()
     } catch (error) {
       return response.status(400).json({
+        status: "Bad Request",
         message: error.message || 'Unexpected error.'
       })
     }
