@@ -1,5 +1,5 @@
 
-import { inject, injectable } from "tsyringe";
+import { delay, inject, injectable } from "tsyringe";
 
 import { Person } from "../Domain/entities/Person/Person";
 
@@ -17,7 +17,7 @@ export class PersonService {
   constructor(
     @inject('PersonRepository') personRepository: PersonRepositoy,
     @inject('HospitalService') serviceHospital: HospitalService,
-    @inject('PersonHospitalService') serviceHospitalPerson: PersonHospitalService
+    @inject(delay(() => PersonHospitalService)) serviceHospitalPerson: PersonHospitalService
   ) 
   {
     this.repository = personRepository;

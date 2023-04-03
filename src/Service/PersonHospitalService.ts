@@ -1,4 +1,4 @@
-import { inject, injectable } from "tsyringe";
+import { delay, inject, injectable } from "tsyringe";
 
 import { IPersonHospitalRepository } from "../Domain/interfaces/IPersonHospitalRepository";
 import { PersonHospitalRepository } from "../Data/PersonHospitalRepository";
@@ -16,7 +16,7 @@ export class PersonHospitalService {
 
   constructor(
     @inject('PersonHospitalRepository') personHospitalRepository: PersonHospitalRepository,
-    @inject('PersonService') servicePerson: PersonService,
+    @inject(delay(() => PersonService)) servicePerson: PersonService,
     @inject('HospitalService') serviceHospital: HospitalService,
     ) {
     this.repository = personHospitalRepository;
