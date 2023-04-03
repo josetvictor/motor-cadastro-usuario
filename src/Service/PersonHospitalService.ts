@@ -3,10 +3,11 @@ import { delay, inject, injectable } from "tsyringe";
 import { IPersonHospitalRepository } from "../Domain/interfaces/IPersonHospitalRepository";
 import { PersonHospitalRepository } from "../Data/PersonHospitalRepository";
 
-import { PersonHospital } from "../Domain/entities/PersonHospital/PersonHospital";
-import { Person } from "../Domain/entities/Person/Person";
 import { PersonService } from "./PersonService";
 import { HospitalService } from "./HospitalService";
+
+import { PersonHospital } from "../Domain/entities/PersonHospital/PersonHospital";
+import { Person } from "../Domain/entities/Person/Person";
 import { Hospital } from "../Domain/entities/Hospital/Hospital";
 
 @injectable()

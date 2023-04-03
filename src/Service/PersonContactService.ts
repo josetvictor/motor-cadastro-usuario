@@ -38,7 +38,6 @@ export class PersonContactService {
 
   async savePersonContact(contact: PersonContact): Promise<void> {
     try {
-      // TO DO: validar se pessoa e hospital são validos
       await this.repository.save(new PersonContact(contact));
     } catch (error) {
       throw new Error(error.menssage);

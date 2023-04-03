@@ -38,8 +38,7 @@ export class HospitalService {
         throw new Error("Hospital com esse nome já existe!");
       }
 
-      let result = await this.repository.save(new Hospital(hospital));
-      return result;
+      await this.repository.save(new Hospital(hospital));
     } catch (error) {
       throw new Error(error);
     }

@@ -1,28 +1,20 @@
 
-import { delay, inject, injectable } from "tsyringe";
+import { inject, injectable } from "tsyringe";
 
 import { Person } from "../Domain/entities/Person/Person";
 
 import { IPersonRepository } from "../Domain/interfaces/IPersonRepository";
-import { HospitalService } from "./HospitalService";
-import { PersonHospitalService } from "./PersonHospitalService";
 import { PersonRepositoy } from "../Data/PersonRepository";
 
 @injectable()
 export class PersonService {
   private repository: IPersonRepository;
-  private hospitalService: HospitalService;
-  private personHospitalService: PersonHospitalService;
 
   constructor(
     @inject('PersonRepository') personRepository: PersonRepositoy,
-    @inject('HospitalService') serviceHospital: HospitalService,
-    @inject(delay(() => PersonHospitalService)) serviceHospitalPerson: PersonHospitalService
   ) 
   {
     this.repository = personRepository;
-    this.hospitalService = serviceHospital;
-    this.personHospitalService = serviceHospitalPerson;
   }
 
   async findAllPerson(): Promise<object[]> {
@@ -55,7 +47,6 @@ export class PersonService {
       }
 
       await this.repository.save(new Person(person));
-
     } catch (error) {
       throw new Error(error)
     }

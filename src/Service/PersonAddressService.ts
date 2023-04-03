@@ -39,8 +39,6 @@ export class PersonAddressService {
 
   async savePersonAddress(address: PersonAddress): Promise<void> {
     try {
-      // TO DO: verificar se pessoa e hospital são validos
-
       await this.repository.save(new PersonAddress(address));
     } catch (error) {
       throw new Error(error.message);
