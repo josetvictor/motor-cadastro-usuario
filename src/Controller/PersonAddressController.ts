@@ -13,10 +13,16 @@ export class PersonAddressController {
   async findAllAddressByPerson(request: Request, response: Response): Promise<Response> {
     const { idPerson } = request.body;
     try {
+      console.log(idPerson)
       const address = await this.service.findAllAddressByPerson(idPerson);
-      return response.status(200).send(address)
+      return response.status(200).json({
+        status: "OK",
+        message: "Address found.",
+        data: address
+      })
     } catch (error) {
       return response.status(400).json({
+        status: "Bad Request",
         message: error.message || 'Unexpected error.'
       })
     }
@@ -25,10 +31,16 @@ export class PersonAddressController {
   async findAllAddressByHospital(request: Request, response: Response): Promise<Response> {
     const { idHospital } = request.body;
     try {
-      const hospital = await this.service.findAllAddressByHospital(idHospital);
-      return response.status(200).send(hospital)
+      console.log(idHospital)
+      const address = await this.service.findAllAddressByHospital(idHospital);
+      return response.status(200).json({
+        status: "OK",
+        message: "Address found.",
+        data: address
+      })
     } catch (error) {
       return response.status(400).json({
+        status: "Bad Request",
         message: error.message || 'Unexpected error.'
       })
     }
@@ -46,9 +58,13 @@ export class PersonAddressController {
           idHospital: idHospital
         });
       
-      return response.status(200).send(addressCreated)
+      return response.status(200).json({
+        status: "Created",
+        message: "Hospital Created."
+      })
     } catch (error) {
       return response.status(400).json({
+        status: "Bad Request",
         message: error.message || 'Unexpected error.'
       })
     }

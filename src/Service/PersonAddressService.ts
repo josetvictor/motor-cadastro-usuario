@@ -13,7 +13,7 @@ export class PersonAddressService {
     this.repository = personAddressRepository;
   }
 
-  async findAllAddressByPerson(idPerson: string): Promise<PersonAddress[]> {
+  async findAllAddressByPerson(idPerson: string): Promise<object[]> {
     try {
       if(!idPerson){
         throw new Error("Informe uma pessoa valida");
@@ -25,7 +25,7 @@ export class PersonAddressService {
     }
   }
 
-  async findAllAddressByHospital(idHospital: string): Promise<PersonAddress[]> {
+  async findAllAddressByHospital(idHospital: string): Promise<object[]> {
     try {
       if(!idHospital){
         throw new Error("Informe um hospital valido");
@@ -37,11 +37,11 @@ export class PersonAddressService {
     }
   }
 
-  async savePersonAddress(address: PersonAddress): Promise<PersonAddress> {
+  async savePersonAddress(address: PersonAddress): Promise<void> {
     try {
       // TO DO: verificar se pessoa e hospital são validos
 
-      return await this.repository.save(new PersonAddress(address));
+      await this.repository.save(new PersonAddress(address));
     } catch (error) {
       throw new Error(error.message);
     }
