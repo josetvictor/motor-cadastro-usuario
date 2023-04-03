@@ -16,7 +16,7 @@ export class HospitalRepository implements IHospitalRepository {
       });
 
       if(result === undefined || result.length == 0)
-        return null
+        return []
 
       return result
     } catch (error) {

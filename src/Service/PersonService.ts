@@ -25,15 +25,15 @@ export class PersonService {
     this.personHospitalService = serviceHospitalPerson;
   }
 
-  async findAllPerson(): Promise<Person[]> {
+  async findAllPerson(): Promise<object[]> {
     try {
       return await this.repository.findAll();
     } catch (error) {
-      throw new Error(error.menssage);
+      throw new Error(error);
     }
   }
 
-  async findPersonByDocument(txDocument: string): Promise<Person> {
+  async findPersonByDocument(txDocument: string): Promise<object> {
     try {
       const findedPerson = await this.repository.findByDocument(txDocument);
 
@@ -42,11 +42,11 @@ export class PersonService {
 
       return findedPerson;
     } catch (error) {
-      throw new Error(error.menssage);
+      throw new Error(error);
     }
   }
 
-  async savePerson(person: Person): Promise<Person> {
+  async savePerson(person: Person): Promise<void> {
     try {
       const existPerson = await this.repository.findByDocument(person.txDocument)
       
@@ -54,20 +54,17 @@ export class PersonService {
         throw new Error("A pessoa informada já está cadastrada no sistema.");
       }
 
-      const personCreated = await this.repository.save(new Person(person));
+      await this.repository.save(new Person(person));
 
-      if(personCreated.isConsent){
+      if(person.isConsent){
         const allHospitals = await this.hospitalService.findAllHospital();
         
-        allHospitals.forEach(async hos => {
-          await this.personHospitalService.save(personCreated.id, hos.id);
+        allHospitals.forEach(async (hos: Person) => {
+          await this.personHospitalService.save(person.id, hos.id);
         });
       }
-
-      return personCreated;
-
     } catch (error) {
-      throw new Error(error.menssage)
+      throw new Error(error)
     }
   }
 }

@@ -14,9 +14,14 @@ export class PersonController {
     try {
       const person = await this.personService.findAllPerson();
 
-      return response.status(200).send(person)
+      return response.status(200).json({
+        status: "OK",
+        message: "persons found.",
+        data: person
+      })
     } catch (error) {
       return response.status(400).json({
+        status: "Bad Request",
         message: error.message || 'Unexpected error.'
       })
     }
@@ -28,9 +33,14 @@ export class PersonController {
     try {
       const person = await this.personService.findPersonByDocument(txDocument);
 
-      return response.status(200).send(person)
+      return response.status(200).json({
+        status: "OK",
+        message: "person found.",
+        data: person
+      })
     } catch (error) {
       return response.status(400).json({
+        status: "Bad Request",
         message: error.message || 'Unexpected error.'
       })
     }
@@ -40,17 +50,20 @@ export class PersonController {
     const {txName, txSurname, txDocument, isConsent, dtBirth } = request.body;
 
     try {
-      const personCreated = await this.personService.savePerson({
+      await this.personService.savePerson({
         txName,
         txSurname,
         txDocument,
         isConsent,
-        dtBirth,
       });
 
-      return response.status(201).send(personCreated)
+      return response.status(201).json({
+        status: "Created",
+        message: "Person Created."
+      })
     } catch (error) {
       return response.status(400).json({
+        status: "Bad Request",
         message: error.message || 'Unexpected error.'
       })
     }

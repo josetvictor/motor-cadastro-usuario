@@ -1,7 +1,7 @@
 import { Person } from "../entities/Person/Person";
 
 export interface IPersonRepository {
-  findAll(): Promise<Person[]>;
-  findByDocument(txDocument: string): Promise<Person>;
-  save(person: Person): Promise<Person>;
+  findAll(): Promise<object[]>;
+  findByDocument(txDocument: string): Promise<object>;
+  save(person: Person): Promise<void>;
 }
