@@ -1,8 +1,10 @@
 import { container } from "tsyringe";
+import { QueryTypes } from "sequelize";
+
 import { PersonHospital } from "../Domain/entities/PersonHospital/PersonHospital";
 import { IPersonHospitalRepository } from "../Domain/interfaces/IPersonHospitalRepository";
+
 import { dbConfig } from "../shared/dbConfig";
-import { QueryTypes } from "sequelize";
 
 export class PersonHospitalRepository implements IPersonHospitalRepository {
 
@@ -56,5 +58,4 @@ export class PersonHospitalRepository implements IPersonHospitalRepository {
       throw new Error(error)
     }
   }
-
 }

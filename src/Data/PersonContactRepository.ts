@@ -1,9 +1,10 @@
 import { container } from "tsyringe";
-import { PersonContact } from "../Domain/entities/Person/PersonContact";
-import { IPersonContactRepository } from "../Domain/interfaces/IPersonContactRepository";
-import { dbConfig } from "../shared/dbConfig";
 import { QueryTypes } from "sequelize";
 
+import { PersonContact } from "../Domain/entities/Person/PersonContact";
+import { IPersonContactRepository } from "../Domain/interfaces/IPersonContactRepository";
+
+import { dbConfig } from "../shared/dbConfig";
 
 export class PersonContactRepository implements IPersonContactRepository {
   

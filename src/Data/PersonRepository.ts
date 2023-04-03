@@ -1,8 +1,10 @@
 import { container } from "tsyringe";
+import { QueryTypes } from "sequelize";
+
 import { Person } from "../Domain/entities/Person/Person";
 import { IPersonRepository } from "../Domain/interfaces/IPersonRepository";
+
 import { dbConfig } from "../shared/dbConfig";
-import { QueryTypes } from "sequelize";
 
 export class PersonRepositoy implements IPersonRepository {
 

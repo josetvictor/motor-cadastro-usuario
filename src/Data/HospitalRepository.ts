@@ -1,8 +1,10 @@
 import { container } from "tsyringe";
+import { QueryTypes } from "sequelize";
+
 import { Hospital } from "../Domain/entities/Hospital/Hospital";
 import { IHospitalRepository } from "../Domain/interfaces/IHospitalRepository";
+
 import { dbConfig } from "../shared/dbConfig";
-import { QueryTypes } from "sequelize";
 
 export class HospitalRepository implements IHospitalRepository {
 
@@ -40,6 +42,7 @@ export class HospitalRepository implements IHospitalRepository {
       throw new Error(error);
     }
   }
+  
   async save(hospital: Hospital): Promise<void> {
     try {
       await this.db_Config.sequelize.query(`INSERT INTO hospital (id, txName) values (:id, :txName)`, {

@@ -1,8 +1,10 @@
 import { container } from "tsyringe";
+import { QueryTypes } from "sequelize";
+
 import { PersonAddress } from "../Domain/entities/Person/PersonAddress";
 import { IPersonAddressRepository } from "../Domain/interfaces/IPersonAddressRepository";
+
 import { dbConfig } from "../shared/dbConfig";
-import { QueryTypes } from "sequelize";
 
 export class PersonAddressRepository implements IPersonAddressRepository {
   
@@ -59,5 +61,4 @@ export class PersonAddressRepository implements IPersonAddressRepository {
       throw new Error(error)
     }
   }
-
 }
