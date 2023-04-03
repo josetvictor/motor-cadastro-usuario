@@ -13,10 +13,15 @@ export class PersonContactController {
   async findAllContactByPerson(request: Request, response: Response): Promise<Response> {
     const { idPerson } = request.body;
     try {
-      const address = await this.service.findAllContactByPerson(idPerson);
-      return response.status(200).send(address)
+      const contact = await this.service.findAllContactByPerson(idPerson);
+      return response.status(200).json({
+        status: "OK",
+        message: "Contact found.",
+        data: contact
+      })
     } catch (error) {
       return response.status(400).json({
+        status: "Bad Request",
         message: error.message || 'Unexpected error.'
       })
     }
@@ -25,10 +30,15 @@ export class PersonContactController {
   async findAllContactByHospital(request: Request, response: Response): Promise<Response> {
     const { idHospital } = request.body;
     try {
-      const hospital = await this.service.findAllContactByHospital(idHospital);
-      return response.status(200).send(hospital)
+      const contact = await this.service.findAllContactByHospital(idHospital);
+      return response.status(200).json({
+        status: "OK",
+        message: "Contact found.",
+        data: contact
+      })
     } catch (error) {
       return response.status(400).json({
+        status: "Bad Request",
         message: error.message || 'Unexpected error.'
       })
     }
@@ -37,7 +47,7 @@ export class PersonContactController {
   async savePersonContact(request: Request, response: Response): Promise<Response> {
     const {txContactType, txContact, idPerson, idHospital} = request.body
     try {
-      const contactCreated = await this.service.savePersonContact(
+      await this.service.savePersonContact(
         {
           txContactType,
           txContact,
@@ -45,9 +55,13 @@ export class PersonContactController {
           idHospital: idHospital
         });
       
-      return response.status(200).send(contactCreated)
+      return response.status(201).json({
+        status: "Created",
+        message: "Hospital Created."
+      })
     } catch (error) {
       return response.status(400).json({
+        status: "Bad Request",
         message: error.message || 'Unexpected error.'
       })
     }

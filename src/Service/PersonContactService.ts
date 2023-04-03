@@ -13,7 +13,7 @@ export class PersonContactService {
     this.repository = personContactRepository;
   }
 
-  async findAllContactByPerson(idPerson: string): Promise<PersonContact[]> {
+  async findAllContactByPerson(idPerson: string): Promise<object[]> {
     try {
       if(!idPerson){
         throw new Error("Informe uma pessoa valida");
@@ -24,7 +24,7 @@ export class PersonContactService {
     }
   }
 
-  async findAllContactByHospital(idHospital: string): Promise<PersonContact[]> {
+  async findAllContactByHospital(idHospital: string): Promise<object[]> {
     try {
       if(!idHospital){
         throw new Error("Informe um hospital valido");
@@ -36,10 +36,10 @@ export class PersonContactService {
     }
   }
 
-  async savePersonContact(contact: PersonContact): Promise<PersonContact> {
+  async savePersonContact(contact: PersonContact): Promise<void> {
     try {
       // TO DO: validar se pessoa e hospital são validos
-      return await this.repository.save(new PersonContact(contact));
+      await this.repository.save(new PersonContact(contact));
     } catch (error) {
       throw new Error(error.menssage);
     }
