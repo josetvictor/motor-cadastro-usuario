@@ -14,31 +14,32 @@ export class HospitalService {
     this.repository = hospitalRepository;
   }
 
-  async findAllHospital(): Promise<Hospital[]> {
+  async findAllHospital(): Promise<object[]> {
     try {
       return await this.repository.findAll();
     } catch (error) {
-      throw new Error(error.message)
+      throw new Error(error)
     }
   }
 
-  async findHospitalByName(txName: string): Promise<Hospital> {
+  async findHospitalByName(txName: string): Promise<object> {
     try {
       return await this.repository.findByName(txName);
     } catch (error) {
-      throw new Error(error.menssage)
+      throw new Error(error)
     }
   }
 
-  async saveHospital(hospital: Hospital): Promise<Hospital> {
+  async saveHospital(hospital: Hospital): Promise<void> {
     try {
       const existHospital = await this.repository.findByName(hospital.txName);
 
-      if(existHospital) {
+      if(existHospital !== null) {
         throw new Error("Hospital com esse nome já existe!");
       }
 
-      return await this.repository.save(new Hospital(hospital));
+      let result = await this.repository.save(new Hospital(hospital));
+      return result;
     } catch (error) {
       throw new Error(error);
     }

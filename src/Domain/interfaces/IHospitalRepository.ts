@@ -1,7 +1,7 @@
 import { Hospital } from "../entities/Hospital/Hospital";
 
 export interface IHospitalRepository {
-  findAll(): Promise<Hospital[]>;
-  findByName(txName: string): Promise<Hospital>;
-  save(hospital: Hospital): Promise<Hospital>;
+  findAll(): Promise<object[]>;
+  findByName(txName: string): Promise<object>;
+  save(hospital: Hospital): Promise<void>;
 }

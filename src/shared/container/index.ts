@@ -21,6 +21,7 @@ import { PersonAddressService } from "../../Service/PersonAddressService";
 import { IPersonHospitalRepository } from "../../Domain/interfaces/IPersonHospitalRepository";
 import { PersonHospitalRepository } from "../../Data/PersonHospitalRepository";
 import { PersonHospitalService } from "../../Service/PersonHospitalService";
+import { dbConfig } from "../dbConfig";
 
 container.registerSingleton<IPersonAddressRepository>("PersonAddressRepository", PersonAddressRepository);
 container.registerSingleton<PersonAddressService>("PersonAddressService", PersonAddressService);
@@ -37,3 +38,4 @@ container.registerSingleton<PersonHospitalService>("PersonHospitalService", Pers
 container.registerSingleton<IPersonRepository>('PersonRepository', PersonRepositoy);
 container.registerSingleton<PersonService>('PersonService', PersonService);
 
+container.registerSingleton<dbConfig>('dbConfig', dbConfig);
