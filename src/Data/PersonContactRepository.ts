@@ -46,10 +46,10 @@ export class PersonContactRepository implements IPersonContactRepository {
   
   async save(contact: PersonContact): Promise<void> {
     try {
-      await this.db_Config.sequelize.query(`INSERT INTO person_contact (id, txTypeContact, txContact, txReference, idPerson, idHospital) values (:id, :txTypeContact, :txContact, :txReference, :idPerson, :idHospital)`, {
+      await this.db_Config.sequelize.query(`INSERT INTO person_contact (id, txContactType, txContact, idPerson, idHospital) values (:id, :txContactType, :txContact, :idPerson, :idHospital)`, {
         replacements: { 
           id: contact.id,
-          txTypeContact: contact.txContactType, 
+          txContactType: contact.txContactType, 
           txContact: contact.txContact,
           idPerson: contact.idPerson,
           idHospital: contact.idHospital
