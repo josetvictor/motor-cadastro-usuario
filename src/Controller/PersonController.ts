@@ -28,7 +28,7 @@ export class PersonController {
   }
 
   async findByDocumentPerson(request: Request, response: Response): Promise<Response> {
-    const {txDocument} = request.body;
+    const {txDocument} = request.params;
 
     try {
       const person = await this.personService.findPersonByDocument(txDocument);

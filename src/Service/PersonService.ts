@@ -28,8 +28,6 @@ export class PersonService {
 
   async findPersonByDocument(txDocument: string): Promise<object> {
     try {
-      cpf.validateOrFail(txDocument);
-
       const findedPerson = await this.repository.findByDocument(txDocument);
 
       if(!findedPerson)
@@ -44,7 +42,7 @@ export class PersonService {
   async savePerson(person: Person): Promise<void> {
     try {
       cpf.validateOrFail(person.txDocument);
-      
+
       const existPerson = await this.repository.findByDocument(person.txDocument)
       
       if(existPerson){

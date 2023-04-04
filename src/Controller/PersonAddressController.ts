@@ -11,7 +11,7 @@ export class PersonAddressController {
   }
 
   async findAllAddressByPerson(request: Request, response: Response): Promise<Response> {
-    const { idPerson } = request.body;
+    const { idPerson } = request.params;
     try {
       const address = await this.service.findAllAddressByPerson(idPerson);
       return response.status(200).json({
@@ -28,7 +28,7 @@ export class PersonAddressController {
   }
 
   async findAllAddressByHospital(request: Request, response: Response): Promise<Response> {
-    const { idHospital } = request.body;
+    const { idHospital } = request.params;
     try {
       const address = await this.service.findAllAddressByHospital(idHospital);
       return response.status(200).json({

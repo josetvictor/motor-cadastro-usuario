@@ -16,7 +16,7 @@ const personHospital = container.resolve(PersonHospitalController);
 
 router.post('/person', (req, res) =>{ return person.savePerson(req, res) });
 router.get('/person', (req, res) =>{ return person.findAllPerson(req, res) });
-router.get('/person/:document', (req, res) =>{ return person.findByDocumentPerson(req, res) });
+router.get('/person/:txDocument', (req, res) =>{ return person.findByDocumentPerson(req, res) });
 
 router.post('/hospital', (req, res) =>{ return hospital.saveHospital(req, res) });
 router.get('/hospital', (req, res) =>{ return hospital.findAllHospital(req, res) });

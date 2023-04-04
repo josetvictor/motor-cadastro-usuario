@@ -27,7 +27,7 @@ export class HospitalController {
   }
 
   async findHospitalByName(request: Request, response: Response): Promise<Response> {
-    const { txName } = request.body;
+    const { txName } = request.params;
     try {
       const hospital = await this.service.findHospitalByName(txName);
       return response.status(200).json({
